@@ -8,7 +8,8 @@ import java.util.UUID;
 
 @Entity
 @Data
-public class book {
+public class
+book {
     @Id
     private UUID Id;
     private String name;

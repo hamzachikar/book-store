@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 public class bookController {
@@ -27,11 +28,11 @@ public class bookController {
         return repository.save(newbook);
     }
     @DeleteMapping("/book/{id}")
-    void deletebook(@PathVariable Long id) {
+    void deletebook(@PathVariable UUID id) {
         repository.deleteById(id);
     }
     @PutMapping("/book/{id}")
-    Optional<book> replacebook(@RequestBody book newbook, @PathVariable Long id) {
+    Optional<book> replacebook(@RequestBody book newbook, @PathVariable UUID id) {
 
         return repository.findById(id)
                 .map(book -> {
