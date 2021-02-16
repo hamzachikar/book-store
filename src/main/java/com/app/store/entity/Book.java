@@ -16,7 +16,9 @@ import java.util.UUID;
 @AllArgsConstructor
 public class Book {
     @Id
-    @Transient
+    @GeneratedValue(generator="system-uuid")
+    @GenericGenerator(name="system-uuid",
+            strategy = "uuid")
     private UUID Id = UUID.randomUUID();
     @Column
     private String name;
