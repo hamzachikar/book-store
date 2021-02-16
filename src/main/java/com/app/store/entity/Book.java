@@ -15,9 +15,8 @@ import java.util.UUID;
 @AllArgsConstructor
 public class Book {
     @Id
-    @GeneratedValue(generator = "system-uuid")
-    @GenericGenerator(name="system-uuid",strategy = "uuid")
-    private UUID Id;
+    @Transient
+    private UUID Id = UUID.randomUUID();
     @Column
     private String name;
     @OneToMany(cascade = CascadeType.REMOVE,fetch = FetchType.LAZY)

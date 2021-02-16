@@ -7,8 +7,8 @@ import java.util.UUID;
 
 public interface IBookService {
     public ResponseEntity<Book> createBook(Book book);
-    public ResponseEntity<Book> updateBook(UUID id, Book book);
-    public void deleteBook(UUID id);
+    public ResponseEntity<Book> updateBook(UUID Id, Book book);
+    public void deleteBook(UUID Id);
 
 
 
