@@ -6,6 +6,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -22,6 +23,9 @@ public class Book {
     @OneToMany(cascade = CascadeType.REMOVE,fetch = FetchType.LAZY)
     private List<Comment> comments;
     public void addComment(Comment comment) {
+        if(this.comments==null){
+            this.comments=new ArrayList<>();
+        }
         this.comments.add(comment);
     }
 }
