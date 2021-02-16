@@ -13,7 +13,6 @@ import javax.persistence.*;
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idComment;
-    @Column
+    private int id;
     private String comment;
 }

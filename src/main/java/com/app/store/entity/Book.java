@@ -20,7 +20,6 @@ public class Book {
     @GenericGenerator(name="system-uuid",
             strategy = "uuid")
     private UUID Id = UUID.randomUUID();
-    @Column
     private String name;
     @OneToMany(cascade = CascadeType.REMOVE,fetch = FetchType.LAZY)
     private List<Comment> comments;
