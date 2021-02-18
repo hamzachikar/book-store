@@ -14,5 +14,5 @@ public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String comment;
+    private String commentText;
 }

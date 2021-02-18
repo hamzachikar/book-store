@@ -1,15 +1,10 @@
 package com.app.store.services.impl;
 
 import com.app.store.entity.Book;
+import com.app.store.entity.BookNotFoundException;
 import com.app.store.repositories.BookRepository;
 import com.app.store.services.BookService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
-
-
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 public class BookServiceImpl implements BookService {
@@ -24,15 +19,8 @@ public class BookServiceImpl implements BookService {
         return this.bookRepository.save(book);
     }
     @Override
-    public Book update(UUID id, Book book) {
-        Optional<Book> bookFound=this.bookRepository.findById(id);
-        if(bookFound.isPresent()){
-            Book bFound=bookFound.get();
-            bFound.setName(book.getName());
-            book.setComments(book.getComments());
-            return this.bookRepository.save(book);
-        }
-        return null;
+    public Book update(Book book) {
+        return this.bookRepository.save(book);
     }
     @Override
     public void delete(UUID id) {
@@ -46,7 +34,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public Book findById(UUID id) {
-        return this.bookRepository.findById(id).get();
+        return this.bookRepository.findById(id).orElseThrow(BookNotFoundException::new);
     }
 
 

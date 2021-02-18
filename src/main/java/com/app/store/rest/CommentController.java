@@ -13,10 +13,13 @@ public class CommentController {
     public CommentController(CommentService commentService){
         this.commentService=commentService;
     }
-
+    @GetMapping("/{id}")
+    public Comment getById(@PathVariable int id){
+        return this.commentService.findById(id);
+    }
     @PostMapping("/{idBook}")
-    public Comment save(@PathVariable UUID idBook,@RequestBody Comment comment){
-        return this.commentService.add(idBook,comment);
+    public void save(@PathVariable UUID idBook,@RequestBody Comment comment)throws Exception {
+        this.commentService.add(idBook,comment);
     }
 
     @DeleteMapping("/{id}")
@@ -24,9 +27,9 @@ public class CommentController {
         this.commentService.delete(id);
     }
 
-    @PutMapping("/{id}")
-    public Comment update(@PathVariable int id,@RequestBody Comment comment){
-        return this.commentService.update(id,comment);
+    @PutMapping
+    public Comment update(@RequestBody Comment comment){
+        return this.commentService.update(comment);
     }
 
 }

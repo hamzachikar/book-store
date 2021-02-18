@@ -2,12 +2,11 @@ package com.app.store.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.GenericGenerator;
-
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Entity
@@ -16,15 +15,16 @@ import java.util.UUID;
 @AllArgsConstructor
 public class Book {
     @Id
-    private UUID Id = UUID.randomUUID();
+    private UUID id = UUID.randomUUID();
     private String name;
     @OneToMany(cascade = CascadeType.REMOVE,fetch = FetchType.LAZY)
     private List<Comment> comments;
-    public void addComment(Comment comment) {
-        if(this.comments==null){
+    public Book addComment(Comment comment) {
+        Optional.of(this.comments).ifPresentOrElse(c->c.add(comment),()->{
             this.comments=new ArrayList<>();
-        }
-        this.comments.add(comment);
+            comments.add(comment);
+        });
+        return this;
     }
 }
 

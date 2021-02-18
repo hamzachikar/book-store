@@ -1,4 +1,4 @@
-package com.app.store;
+package com.app.store.controllers;
 
 import com.app.store.entity.Book;
 import com.app.store.rest.BookController;
@@ -19,14 +19,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(controllers = BookController.class)
-public class BookControllerTest {
+class BookControllerTest {
     @MockBean
     BookService bookService;
     @Autowired
     MockMvc mockMvc;
 
     @Test
-    public void should_return_a_book_by_id() throws Exception {
+    void should_return_a_book_by_id() throws Exception {
         UUID id=UUID.randomUUID();
         given(bookService.findById(id))
                 .willReturn(new Book(id,"book",new ArrayList<>()));
