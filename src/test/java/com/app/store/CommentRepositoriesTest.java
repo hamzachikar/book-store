@@ -9,7 +9,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
-public class RepositoriesTest {
+public class CommentRepositoriesTest {
     @Autowired
     TestEntityManager testEntityManager;
     @Autowired
@@ -17,9 +17,14 @@ public class RepositoriesTest {
 
     @Test
     public void should_return_comment_by_id(){
+        //given
         var comment=new Comment(0,"test");
         testEntityManager.persist(comment);
+        comment.setId(1);
+        //when
         var expected=commentRepository.findById(1);
-        assertThat(comment.getComment()).isEqualTo(expected.get().getComment());
+
+        //then
+        assertThat(comment).isEqualTo(expected.get());
     }
 }

@@ -24,15 +24,22 @@ public class BookServiceTest {
 
     @Test
     public void should_create_a_book(){
+        //given
         String bookName="book";
         UUID idBook=UUID.randomUUID();
         Book bookToSave=new Book(null,bookName,null);
         Book expectedBook=new Book(idBook,bookName,null);
         given(bookRepository.save(bookToSave)).willReturn(expectedBook);
-        assertThat(bookServiceImpl.create(bookToSave)).isEqualTo(expectedBook);
+
+        //when
+        Book actual=bookServiceImpl.create(bookToSave);
+
+        //then
+        assertThat(actual).isEqualTo(expectedBook);
     }
     @Test
     public void should_update_a_book(){
+        //given
         String bookName="book";
         UUID idBook=UUID.randomUUID();
         Book bookToUpdate=new Book(idBook,bookName,null);
@@ -40,8 +47,12 @@ public class BookServiceTest {
         Optional optUpdatedBook=Optional.of(updatedBook);
         given(bookRepository.save(updatedBook)).willReturn(updatedBook);
         given(bookRepository.findById(idBook)).willReturn(optUpdatedBook);
-        assertThat(bookServiceImpl.update(idBook,updatedBook))
-                .isEqualTo(updatedBook);
+
+        //when
+        Book actual=bookServiceImpl.update(idBook,updatedBook);
+
+        //then
+        assertThat(actual).isEqualTo(updatedBook);
     }
 
 }

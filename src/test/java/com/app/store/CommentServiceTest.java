@@ -29,6 +29,7 @@ public class CommentServiceTest {
     //boock service test
     @Test
     public void should_add_a_comment_to_book(){
+       //given
         String bookName="book";
         UUID idBook=UUID.randomUUID();
         String commentTxt="comment";
@@ -42,17 +43,28 @@ public class CommentServiceTest {
         given(bookRepository.findById(idBook)).willReturn(bookOpt);
         given(commentRepository.save(commentToSave)).willReturn(savedComment);
         given(bookRepository.save(book)).willReturn(updatedBook);
-        assertThat(commentServiceImpl.add(idBook,commentToSave))
+
+        //when
+        Comment actual=commentServiceImpl.add(idBook,commentToSave);
+
+        //then
+        assertThat(actual)
                 .isEqualTo(savedComment);
     }
     @Test
     public void should_update_a_comment(){
+        //given
         int idComment=1;
         Comment updatedComment=new Comment(idComment,"commentUpdated");
         Optional optUpdatedComment=Optional.of(updatedComment);
         given(commentRepository.save(updatedComment)).willReturn(updatedComment);
         given(commentRepository.findById(idComment)).willReturn(optUpdatedComment);
-        assertThat(commentServiceImpl.update(idComment,updatedComment))
+
+        //when
+        Comment actual=commentServiceImpl.update(idComment,updatedComment);
+
+        //then
+        assertThat(actual)
                 .isEqualTo(updatedComment);
     }
 }
