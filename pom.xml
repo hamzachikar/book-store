@@ -15,6 +15,9 @@
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>13</java.version>
+		<sonar.projectKey>hamzachikar_book-store</sonar.projectKey>
+		<sonar.organization>hamzachikar</sonar.organization>
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -61,6 +64,7 @@
 			<artifactId>lombok</artifactId>
 		</dependency>
 	</dependencies>
+
 
 	<build>
 		<plugins>
