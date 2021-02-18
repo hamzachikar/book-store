@@ -55,4 +55,9 @@ public class CommentServiceImpl implements CommentService {
         }
         return null;
     }
+
+    @Override
+    public Comment findById(int id) {
+        return this.commentRepository.findById(id).get();
+    }
 }

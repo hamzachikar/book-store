@@ -11,4 +11,5 @@ public interface CommentService {
     void delete(int idComment);
     Comment add(UUID idBook, Comment comment);
     Comment update(int idComment, Comment comment);
+    Comment findById(int id);
 }
