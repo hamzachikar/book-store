@@ -18,7 +18,7 @@ public class CommentController {
         return this.commentService.findById(id);
     }
     @PostMapping("/{idBook}")
-    public void save(@PathVariable UUID idBook,@RequestBody Comment comment)throws Exception {
+    public void save(@PathVariable UUID idBook,@RequestBody Comment comment){
         this.commentService.add(idBook,comment);
     }
 
