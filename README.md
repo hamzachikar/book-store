@@ -1,6 +1,6 @@
 # book-store
 
-[![CI/CD](https://github.com/hamzachikar/book-store/workflows/maven/badge.svg)](https://github.com/hamzachikar/book-store/actions)
+[![CI/CD](https://github.com/hamzachikar/book-store/workflows/Java CI with Maven/badge.svg)](https://github.com/hamzachikar/book-store/actions)
 
 ## General info
 this is a project for creating a book-store API 
