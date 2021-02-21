@@ -38,7 +38,6 @@ public class BookController {
     public void delete(@PathVariable UUID id) {
         bookService.delete(id);
     }
-    //return obj
     @PutMapping
     public Book update(@RequestBody Book book) {
         return bookService.update(book);
