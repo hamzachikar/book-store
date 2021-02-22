@@ -12,12 +12,25 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+/**
+ * Class test for Book repository.
+ */
 @DataJpaTest
 class BookRepositoryTest {
+    /**
+     * Inject The Test entity manager.
+     */
     @Autowired
     TestEntityManager testEntityManager;
+    /**
+     * Inject The Book repository.
+     */
     @Autowired
     BookRepository bookRepository;
+
+    /**
+     * Test if the book returned is the one expected or not.
+     */
     @Test
     void should_return_book_by_id(){
         //given

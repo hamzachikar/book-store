@@ -8,13 +8,25 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import static org.assertj.core.api.Assertions.assertThat;
 
+/**
+ * Class test for Comment repositories.
+ */
 @DataJpaTest
 class CommentRepositoriesTest {
+    /**
+     * Inject The Test entity manager.
+     */
     @Autowired
     TestEntityManager testEntityManager;
+    /**
+     * Inject The Comment repository.
+     */
     @Autowired
     CommentRepository commentRepository;
 
+    /**
+     * Test if the comment returned is the one expected or not.
+     */
     @Test
     void should_return_comment_by_id(){
         //given
