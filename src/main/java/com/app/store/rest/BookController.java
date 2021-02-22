@@ -2,10 +2,16 @@ package com.app.store.rest;
 
 import com.app.store.entity.Book;
 import com.app.store.services.BookService;
+
+import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
+
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 /** This is the book rest controller. */
 @RestController
@@ -41,9 +47,9 @@ public class BookController {
    * @return the book
    */
   @GetMapping("/{id}")
-  public ResponseEntity<Book> getById(@PathVariable UUID id) {
-    Book book = bookService.findById(id);
-    return ResponseEntity.ok(book);
+  public ResponseEntity<Optional<Book>> getById(@PathVariable UUID id) {
+    Optional<Book> book = Optional.ofNullable(bookService.findById(id));
+    return book.map(value -> new ResponseEntity(value , HttpStatus.OK)).orElseGet(() -> ResponseEntity.notFound().build());
   }
 
   /**
@@ -53,8 +59,11 @@ public class BookController {
    * @return the book
    */
   @PostMapping
-  public Book create(@RequestBody Book newbook) {
-    return bookService.create(newbook);
+  public ResponseEntity<Book> create(@RequestBody Book newbook) {
+    Book book =bookService.create(newbook);
+    URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("").buildAndExpand().toUri();
+      return ResponseEntity.created(location).body(book);
+
   }
 
   /**
@@ -63,8 +72,9 @@ public class BookController {
    * @param id the id
    */
   @DeleteMapping("/{id}")
-  public void delete(@PathVariable UUID id) {
+  public ResponseEntity delete(@PathVariable UUID id) {
     bookService.delete(id);
+    return new ResponseEntity(HttpStatus.OK);
   }
 
   /**
@@ -74,7 +84,8 @@ public class BookController {
    * @return the book
    */
   @PutMapping
-  public Book update(@RequestBody Book book) {
-    return bookService.update(book);
+  public ResponseEntity<Book> update(@RequestBody Book book) {
+    Book book1=bookService.update(book);
+    return ResponseEntity.ok(book1);
   }
 }
