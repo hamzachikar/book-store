@@ -1,0 +1,1 @@
+insert into book(id,name) values('da07b5c8fffc481cb4f9639de41e2419','book');

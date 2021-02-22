@@ -19,6 +19,12 @@ public class Book {
     private String name;
     @OneToMany(cascade = CascadeType.REMOVE,fetch = FetchType.LAZY)
     private List<Comment> comments;
+
+    public Book(String name,List<Comment> comments){
+        this.name=name;
+        this.comments=comments;
+    }
+
     public Book addComment(Comment comment) {
         Optional.of(this.comments).ifPresentOrElse(c->c.add(comment),()->{
             this.comments=new ArrayList<>();
