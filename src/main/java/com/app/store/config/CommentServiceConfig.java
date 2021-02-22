@@ -7,10 +7,19 @@ import com.app.store.services.impl.CommentServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/** instantiate the commentService. */
 @Configuration
 public class CommentServiceConfig {
-    @Bean
-    public CommentService commentService(CommentRepository commentRepository, BookRepository bookRepository){
-        return new CommentServiceImpl(commentRepository,bookRepository);
-    }
+  /**
+   * Comment service.
+   *
+   * @param commentRepository the comment repository
+   * @param bookRepository the book repository
+   * @return the comment service
+   */
+  @Bean
+  public CommentService commentService(
+      CommentRepository commentRepository, BookRepository bookRepository) {
+    return new CommentServiceImpl(commentRepository, bookRepository);
+  }
 }

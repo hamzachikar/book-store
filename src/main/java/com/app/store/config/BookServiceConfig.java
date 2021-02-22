@@ -6,10 +6,18 @@ import com.app.store.services.impl.BookServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/** instantiate the bookService */
 @Configuration
 public class BookServiceConfig {
-    @Bean
-    public BookService bookService(BookRepository bookRepository){
-        return new BookServiceImpl(bookRepository);
-    }
+  /**
+   * Book service .
+   *
+   * @param bookRepository the book repository
+   * @return the book service
+   */
+  @Bean
+  public BookService bookService(BookRepository bookRepository) {
+
+    return new BookServiceImpl(bookRepository);
+  }
 }
