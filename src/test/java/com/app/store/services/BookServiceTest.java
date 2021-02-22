@@ -19,13 +19,25 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 
+/**
+ * class test for Book service.
+ */
 @ExtendWith(MockitoExtension.class)
 class BookServiceTest {
+    /**
+     * Mock The Book repository.
+     */
     @Mock
     BookRepository bookRepository;
+    /**
+     * Inject The Book service.
+     */
     @InjectMocks
     BookServiceImpl bookServiceImpl;
 
+    /**
+     * Assert that the book saved by the Save method is the one expected to be save .
+     */
     @Test
     void should_create_a_book(){
         //given
@@ -41,6 +53,10 @@ class BookServiceTest {
         //then
         assertThat(actual).isEqualTo(expectedBook);
     }
+
+    /**
+     * Assert that the book returned by findById method is the one we expect .
+     */
     @Test
     void should_return_book_by_id(){
         //given
@@ -56,6 +72,10 @@ class BookServiceTest {
         assertThat(actual).isEqualTo(book);
 
     }
+
+    /**
+     * If the Book doesn't exist This methode Should return book not found exception.
+     */
     @Test
     void should_return_book_not_found_exception(){
         //given
@@ -65,6 +85,10 @@ class BookServiceTest {
         //then
         assertThatThrownBy(()->bookServiceImpl.findById(id)).isInstanceOf(BookNotFoundException.class);
     }
+
+    /**
+     * Should delete book by id.
+     */
     @Test
     void should_delete_book_by_id(){
         //given

@@ -15,12 +15,27 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+/**
+ * The type Comment controller test.
+ */
 @WebMvcTest(controllers = CommentController.class)
 class CommentControllerTest {
+    /**
+     * MockThe Comment service.
+     */
     @MockBean
     CommentService commentService;
+    /**
+     * Inject the Mock mvc.
+     */
     @Autowired
     MockMvc mockMvc;
+
+    /**
+     * Test if the method findById returns a book by id or not.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void should_return_a_book_by_id() throws Exception {
         int id=1;

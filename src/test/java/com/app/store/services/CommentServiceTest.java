@@ -18,15 +18,31 @@ import java.util.ArrayList;
 import java.util.Optional;
 import java.util.UUID;
 
+/**
+ * Class test for Comment service.
+ */
 @ExtendWith(MockitoExtension.class)
 class CommentServiceTest {
+    /**
+     * Mock The Book repository.
+     */
     @Mock
     BookRepository bookRepository;
+    /**
+     * Mock The Comment repository.
+     */
     @Mock
     CommentRepository commentRepository;
+    /**
+     * Inject The Comment service.
+     */
     @InjectMocks
     CommentServiceImpl commentServiceImpl;
-    //boock service test
+
+    /**
+     * Assert that the the comment added to the book is the one given .
+     */
+
     @Test
     void should_add_a_comment_to_book(){
         var id=UUID.randomUUID();
@@ -39,6 +55,10 @@ class CommentServiceTest {
         //then
         assertThatCode(()->{commentServiceImpl.add(id,comment);}).doesNotThrowAnyException();
     }
+
+    /**
+     * Assert that the comment updated is the correct one.
+     */
     @Test
     void should_update_a_comment(){
         //given

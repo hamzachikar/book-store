@@ -22,15 +22,29 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+/**
+ * Class test for Book controller.
+ */
 @WebMvcTest(controllers = BookController.class)
 class BookControllerTest {
+    /**
+     * Mock The Book service.
+     */
     @MockBean
     BookService bookService;
+    /**
+     * Inject The Mock mvc.
+     */
     @Autowired
     MockMvc mockMvc;
 
+    /**
+     * Test if the method create returns a book or not.
+     *
+     * @throws Exception the exception
+     */
     @Test
-    void sould_create_a_book() throws Exception {
+    void should_create_a_book() throws Exception {
         var book=new Book(null,"book",new ArrayList<>());
         var id=UUID.randomUUID();
         given(bookService.create(book))
@@ -45,6 +59,11 @@ class BookControllerTest {
                 .andExpect(jsonPath("$.id").exists());
     }
 
+    /**
+     * Test if the method update updates a book and return it or not.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void should_update_a_book() throws Exception{
         var id=UUID.randomUUID();
@@ -62,6 +81,11 @@ class BookControllerTest {
                 .andExpect(jsonPath("$.name").value("book"));
     }
 
+    /**
+     * Test if the method findAll returns a list of books or not.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void should_return_list_of_books() throws Exception {
         var bookList= List.of(
@@ -78,6 +102,11 @@ class BookControllerTest {
                 .andExpect(jsonPath("$.[*].id").isNotEmpty());
     }
 
+    /**
+     * Test if the method findById returns a book by id or not.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void should_return_a_book_by_id() throws Exception {
         var id=UUID.randomUUID();
@@ -90,6 +119,11 @@ class BookControllerTest {
                 .andExpect(jsonPath("$.name", is("book")));
     }
 
+    /**
+     * Test if the method delete deletes a book by id or not.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void should_delete_a_book_by_id() throws Exception {
         var id=UUID.randomUUID();

@@ -11,9 +11,19 @@ import java.util.List;
 import java.util.UUID;
 
 
+/**
+ * This class implements the methods of comment service interface .
+ */
 public class CommentServiceImpl implements CommentService {
     private final CommentRepository commentRepository;
     private final BookRepository bookRepository;
+
+    /**
+     * Instantiates a new Comment service.
+     *
+     * @param commentRepository the comment repository
+     * @param bookRepository    the book repository
+     */
     public CommentServiceImpl(CommentRepository commentRepository,BookRepository bookRepository){
         this.bookRepository=bookRepository;
         this.commentRepository=commentRepository;

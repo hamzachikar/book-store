@@ -6,6 +6,11 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+/**
+ * this the comment class entity
+ * a comment is defined by an id and a commentText
+ * @author Hamza chikar
+ */
 @Data
 @Entity
 @AllArgsConstructor
