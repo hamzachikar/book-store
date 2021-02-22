@@ -7,9 +7,17 @@ import com.app.store.services.BookService;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * This class implements the methods of book service interface.
+ */
 public class BookServiceImpl implements BookService {
     private final BookRepository bookRepository;
 
+    /**
+     * Instantiates a new Book service.
+     *
+     * @param bookRepository the book repository
+     */
     public BookServiceImpl(BookRepository bookRepository){
         this.bookRepository=bookRepository;
     }

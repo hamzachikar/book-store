@@ -9,6 +9,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+/**
+ * this is the book entity class.
+ * a book is defined by a name , an id and a list of comments
+ * @author ichrak ben abdallah
+ */
 @Entity
 @Data
 @NoArgsConstructor
@@ -19,6 +24,13 @@ public class Book {
     private String name;
     @OneToMany(cascade = CascadeType.REMOVE,fetch = FetchType.LAZY)
     private List<Comment> comments;
+
+    /**
+     * Add a comment to a book.
+     *
+     * @param comment the comment
+     * @return the book
+     */
     public Book addComment(Comment comment) {
         Optional.of(this.comments).ifPresentOrElse(c->c.add(comment),()->{
             this.comments=new ArrayList<>();

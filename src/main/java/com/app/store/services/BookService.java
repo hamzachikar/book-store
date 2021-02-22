@@ -1,14 +1,10 @@
 package com.app.store.services;
-/**
- *
- */
-
 import com.app.store.entity.Book;
 import java.util.List;
 import java.util.UUID;
 
 /**
- * define services ..
+ * The interface book service define services  : create , update , findAll , findById .
  */
 public interface BookService {
     /**
