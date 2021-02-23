@@ -46,7 +46,7 @@ class BookControllerTest {
                 .content(new ObjectMapper().writeValueAsString(book))
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
-        .andExpect(status().isOk())
+        .andExpect(status().isCreated())
         .andExpect(jsonPath("$.id").exists());
   }
 
