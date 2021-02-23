@@ -1,6 +1,8 @@
 package com.app.store.rest;
 
+import com.app.store.ExceptionHandler.RestExceptionHandler;
 import com.app.store.entity.Book;
+import com.app.store.entity.BookNotFoundException;
 import com.app.store.services.BookService;
 
 import java.net.URI;
@@ -8,6 +10,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -49,7 +52,7 @@ public class BookController {
   @GetMapping("/{id}")
   public ResponseEntity<Optional<Book>> getById(@PathVariable UUID id) {
     Optional<Book> book = Optional.ofNullable(bookService.findById(id));
-    return book.map(value -> new ResponseEntity(value , HttpStatus.OK)).orElseGet(() -> ResponseEntity.notFound().build());
+    return book.map(value -> new ResponseEntity(value , HttpStatus.OK)).orElseThrow(() -> new BookNotFoundException());
   }
 
   /**
@@ -72,9 +75,9 @@ public class BookController {
    * @param id the id
    */
   @DeleteMapping("/{id}")
-  public ResponseEntity delete(@PathVariable UUID id) {
+  public void delete(@PathVariable UUID id) {
     bookService.delete(id);
-    return new ResponseEntity(HttpStatus.OK);
+
   }
 
   /**
@@ -84,8 +87,8 @@ public class BookController {
    * @return the book
    */
   @PutMapping
-  public ResponseEntity<Book> update(@RequestBody Book book) {
+  public Book update(@RequestBody Book book) {
     Book book1=bookService.update(book);
-    return ResponseEntity.ok(book1);
+    return book1;
   }
 }
