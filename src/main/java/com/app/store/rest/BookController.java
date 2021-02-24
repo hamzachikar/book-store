@@ -1,6 +1,6 @@
 package com.app.store.rest;
 
-import com.app.store.ExceptionHandler.RestExceptionHandler;
+
 import com.app.store.entity.Book;
 import com.app.store.entity.BookNotFoundException;
 import com.app.store.services.BookService;
@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import net.bytebuddy.implementation.bytecode.Throw;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +19,9 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 /** This is the book rest controller. */
 @RestController
 @RequestMapping("/books")
+@Log4j2
 public class BookController {
+
 
   private final BookService bookService;
 
@@ -39,6 +41,7 @@ public class BookController {
    */
   @GetMapping
   public ResponseEntity<List<Book>> getAll() {
+    log.info("getting the list of all books");
     List<Book> books = bookService.findAll();
     return ResponseEntity.ok(books);
   }
@@ -88,7 +91,7 @@ public class BookController {
    */
   @PutMapping
   public Book update(@RequestBody Book book) {
-    Book book1=bookService.update(book);
-    return book1;
+    return bookService.update(book);
   }
+
 }

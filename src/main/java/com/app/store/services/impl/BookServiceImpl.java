@@ -44,4 +44,5 @@ public class BookServiceImpl implements BookService {
   public Book findById(UUID id) {
     return this.bookRepository.findById(id).orElseThrow(BookNotFoundException::new);
   }
+
 }
