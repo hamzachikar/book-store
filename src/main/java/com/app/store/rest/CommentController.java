@@ -3,11 +3,14 @@ package com.app.store.rest;
 import com.app.store.entity.Comment;
 import com.app.store.services.CommentService;
 import java.util.UUID;
+
+import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.*;
 
 /** The Comment rest controller. */
 @RestController
 @RequestMapping("/comments")
+@Log4j2
 public class CommentController {
   private final CommentService commentService;
 
@@ -28,6 +31,8 @@ public class CommentController {
    */
   @GetMapping("/{id}")
   public Comment getById(@PathVariable int id) {
+
+    log.info("you are getting the comment with the id {}",id);
     return this.commentService.findById(id);
   }
 
@@ -39,6 +44,7 @@ public class CommentController {
    */
   @PostMapping("/{idBook}")
   public void save(@PathVariable UUID idBook, @RequestBody Comment comment) {
+    log.info("you added this comment to the book with id {}",idBook);
     this.commentService.add(idBook, comment);
   }
 
@@ -49,6 +55,7 @@ public class CommentController {
    */
   @DeleteMapping("/{id}")
   public void delete(@PathVariable int id) {
+    log.info("you deleted the comment with id {}",id);
     this.commentService.delete(id);
   }
 
@@ -60,6 +67,7 @@ public class CommentController {
    */
   @PutMapping
   public Comment update(@RequestBody Comment comment) {
+    log.info("you updated the comment : {} ",comment);
     return this.commentService.update(comment);
   }
 }
