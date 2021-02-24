@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.http.HttpStatus;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -78,6 +80,6 @@ public class BookControllerIntegrationTest {
         testRestTemplate.delete(uri);
         var bookResponseEntity=testRestTemplate.getForEntity(uri,Book.class);
         //then
-        assertThat(bookResponseEntity.getStatusCodeValue()).isEqualTo(500);
+        assertThat(bookResponseEntity.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
     }
 }
