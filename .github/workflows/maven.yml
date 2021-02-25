@@ -38,6 +38,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
   test:
+      needs: build
       name: Unit Test
       runs-on: ubuntu-18.04
 
