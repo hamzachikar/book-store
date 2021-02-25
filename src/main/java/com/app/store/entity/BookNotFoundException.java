@@ -7,8 +7,10 @@ package com.app.store.entity;
  */
 public class BookNotFoundException extends RuntimeException {
 
-  /** Instantiates a new Book not found exception. */
-  public BookNotFoundException() {
-    super("book not found");
-  }
+    /**
+     * Instantiates a new Book not found exception.
+     */
+    public BookNotFoundException() {
+        super("book not found");
+    }
 }

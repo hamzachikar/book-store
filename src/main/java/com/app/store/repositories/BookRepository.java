@@ -1,7 +1,9 @@
 package com.app.store.repositories;
 
 import com.app.store.entity.Book;
+
 import java.util.UUID;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -9,4 +11,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * bunch of generic CRUD methods into our type that allows : saving books, deleting them , updating
  * them , searching for them and so on.
  */
-public interface BookRepository extends JpaRepository<Book, UUID> {}
+public interface BookRepository extends JpaRepository<Book, UUID> {
+}
