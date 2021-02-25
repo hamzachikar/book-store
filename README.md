@@ -53,9 +53,8 @@ mvn spring-boot:run
    Our endpoints for storeBookApplication are :
    
    **GET**  
-           * /books
-           get the list of all books
-           ```
+      * /books : get the list of all books
+```
              "/books":{
                   "get":{
                    "tags": ["book-controller"],
@@ -70,10 +69,9 @@ mvn spring-boot:run
                               }
                             }
                           } 
-           ```
-           * /book/id
-           get a book by a given UUID ID 
-           ```
+```
+   * /book/id : get a book by a given UUID ID 
+```
            "/books/{id}": {
            "get": {
              "tags": [
@@ -103,10 +101,9 @@ mvn spring-boot:run
             },
              "deprecated": false
           },
-           ```
-           * /comment/id
-           get a comment by a given UUID id
-           ```
+```
+   * /comment/id : get a comment by a given UUID id
+```
             "/comments/{id}": {
              "get": {
                "tags": [
@@ -162,11 +159,10 @@ mvn spring-boot:run
                "deprecated": false
              }
            }
-           ```
-        **POST**
-                 * /books/
-                 create a new book 
-                 ```
+```
+   **POST**
+        * /books/ : create a new book 
+```
                  "post": {
                  "tags": [
                    "book-controller"
@@ -195,10 +191,9 @@ mvn spring-boot:run
                   }
                 }
               },
-                 ```
-                * /comment/idbook
-                Add this comment to a given book with UUID idbook
-                ```
+```
+   * /comment/idbook : Add this comment to a given book with UUID idbook
+```
                 "/comments/{idBook}": {
                 "post": {
                   "tags": [
@@ -238,11 +233,10 @@ mvn spring-boot:run
                   "deprecated": false
                }
              }
-                ```
-         **PUT**       
-                 * /books/
-                 Update a book 
-                 ```
+```
+   **PUT**       
+       * /books/ : Update a book 
+```
                   "put": {
                   "tags": [
                     "book-controller"
@@ -269,10 +263,9 @@ mvn spring-boot:run
                  }
                }
           }
-                 ```
-                 * /comments/
-                 Update a comment
-                 ```
+```
+   * /comments/ : Update a comment
+```
                  "put": {
                  "tags": [
                    "comment-controller"
@@ -306,13 +299,11 @@ mvn spring-boot:run
                  "deprecated": false
               }
             },
-          
-                 ```
-       **DELETE**       
-                 * /books/ID
-                 Delete a book by a given UUID id
+```
+   **DELETE**       
+        * /books/ID : Delete a book by a given UUID id
                  
-                 ```
+```
                  "delete": {
                   "tags": [
                     "book-controller"
@@ -342,10 +333,9 @@ mvn spring-boot:run
                   "deprecated": false
                }
              },
-                 ```
-                * /comments/id
-                delete a comment by a given UUID id
-                ```
+```
+  * /comments/id : delete a comment by a given UUID id
+```
                 "delete": {
                 "tags": [
                   "comment-controller"
@@ -372,4 +362,4 @@ mvn spring-boot:run
                 "deprecated": false
               }
             }
-                ```
+```
