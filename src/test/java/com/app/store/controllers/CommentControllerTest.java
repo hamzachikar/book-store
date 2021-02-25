@@ -15,28 +15,36 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
-/** The type Comment controller test. */
+/**
+ * The type Comment controller test.
+ */
 @WebMvcTest(controllers = CommentController.class)
 class CommentControllerTest {
-  /** MockThe Comment service. */
-  @MockBean CommentService commentService;
-  /** Inject the Mock mvc. */
-  @Autowired MockMvc mockMvc;
+    /**
+     * MockThe Comment service.
+     */
+    @MockBean
+    CommentService commentService;
+    /**
+     * Inject the Mock mvc.
+     */
+    @Autowired
+    MockMvc mockMvc;
 
-  /**
-   * Test if the method findById returns a book by id or not.
-   *
-   * @throws Exception the exception
-   */
-  @Test
-  void should_return_a_book_by_id() throws Exception {
-    int id = 1;
-    given(commentService.findById(id)).willReturn(new Comment(1, "comment"));
+    /**
+     * Test if the method findById returns a book by id or not.
+     *
+     * @throws Exception the exception
+     */
+    @Test
+    void should_return_a_book_by_id() throws Exception {
+        int id = 1;
+        given(commentService.findById(id)).willReturn(new Comment(1, "comment"));
 
-    mockMvc
-        .perform(get("/comments/" + id))
-        .andExpect(status().isOk())
-        .andExpect(jsonPath("$.id", is(id)))
-        .andExpect(jsonPath("$.commentText", is("comment")));
-  }
+        mockMvc
+                .perform(get("/comments/" + id))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id", is(id)))
+                .andExpect(jsonPath("$.commentText", is("comment")));
+    }
 }

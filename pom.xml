@@ -18,6 +18,10 @@
         <sonar.projectKey>hamzachikar_book-store</sonar.projectKey>
         <sonar.organization>hamzachikar</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <swager2.version>2.9.2</swager2.version>
+        <swagerUi.version>2.9.2</swagerUi.version>
+        <format.version>2.9</format.version>
+        <chekstyle.version>3.1.2</chekstyle.version>
     </properties>
     <dependencies>
         <dependency>
@@ -31,18 +35,17 @@
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
-            <version>2.9.2</version>
+            <version>${swager2.version}</version>
         </dependency>
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
-            <version>2.9.2</version>
+            <version>${swagerUi.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
@@ -67,10 +70,7 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
-
     </dependencies>
-
-
     <build>
         <plugins>
             <plugin>
@@ -80,22 +80,11 @@
             <plugin>
                 <groupId>com.coveo</groupId>
                 <artifactId>fmt-maven-plugin</artifactId>
-                <version>2.9</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>format</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>3.1.2</version>
-                <configuration>
-                    <configLocation>checkstyle.xml</configLocation>
-                </configuration>
+                <version>${chekstyle.version}</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -105,8 +94,6 @@
                     <nohelp>true</nohelp>
                 </configuration>
             </plugin>
-
         </plugins>
     </build>
-
 </project>
