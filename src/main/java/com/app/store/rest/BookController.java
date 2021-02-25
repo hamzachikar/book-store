@@ -26,7 +26,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 @Log4j2
 public class BookController {
 
-
     private final BookService bookService;
 
 
@@ -104,5 +103,4 @@ public class BookController {
         log.info("update this book : {}", book);
         return bookService.update(book);
     }
-
 }

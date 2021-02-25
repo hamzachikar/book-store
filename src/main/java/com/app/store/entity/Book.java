@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Book {
-
+  
     @Id
     private UUID id = UUID.randomUUID();
     private String name;
@@ -50,5 +50,4 @@ public class Book {
                         });
         return this;
     }
-
 }
