@@ -21,7 +21,7 @@ public class BookControllerIntegrationTest {
     TestRestTemplate testRestTemplate;
 
     @Test
-    void should_create_a_book(){
+    void ishould_create_a_book(){
         //given
         var uri="http://localhost:"+port+"/books";
         var book=new Book("book",new ArrayList<>());

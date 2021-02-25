@@ -23,12 +23,12 @@ public class Book {
   @Id private UUID id = UUID.randomUUID();
   private String name;
 
-
   @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
   private List<Comment> comments;
-  public Book(String name,List<Comment> comments){
-        this.name=name;
-        this.comments=comments;
+
+  public Book(String name, List<Comment> comments) {
+    this.name = name;
+    this.comments = comments;
   }
   /**
    * Add a comment to a book.
