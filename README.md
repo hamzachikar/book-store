@@ -47,5 +47,329 @@ mvn spring-boot:run
    In this Spring boot application we can manage books in a store by:
     * Add, update,find or delete a book
     * Add comments to a book
-
-
+    * Update , find and delete a comment
+  ### Endpoints:
+   API endpoint is the point of entry in a communication channel when two systems are interacting.  It refers to touchpoints of the communication between an API and a      server. The endpoint can be viewed as the means from which the API can access the resources they need from a server to perform their task.
+   Our endpoints for storeBookApplication are :
+   
+   **GET**  
+           * /books
+           get the list of all books
+           ```
+             "/books":{
+                  "get":{
+                   "tags": ["book-controller"],
+                     "summary": "getAll",
+                    "responses": {
+                           "200": {
+                             "description": "OK",
+                             "schema": {
+                               "type": "array",
+                               "items": {
+                                 "$ref": "#/definitions/Book"
+                              }
+                            }
+                          } 
+           ```
+           * /book/id
+           get a book by a given UUID ID 
+           ```
+           "/books/{id}": {
+           "get": {
+             "tags": [
+               "book-controller"
+            ],
+             "summary": "getById",
+             "parameters": [
+              {
+                 "name": "id",
+                 "in": "path",
+                 "description": "id",
+                 "required": true,
+                 "type": "string",
+                 "format": "uuid"
+              }
+            ],
+             "responses": {
+               "200": {
+                 "description": "OK",
+                 "schema": {
+                   "$ref": "#/definitions/Optional«Book»"
+                }
+              },
+               "404": {
+                 "description": "Not Found"
+              }
+            },
+             "deprecated": false
+          },
+           ```
+           * /comment/id
+           get a comment by a given UUID id
+           ```
+            "/comments/{id}": {
+             "get": {
+               "tags": [
+                 "comment-controller"
+               ],
+               "summary": "getById",
+               "parameters": [
+                 {
+                   "name": "id",
+                   "in": "path",
+                   "description": "id",
+                   "required": true,
+                   "type": "integer",
+                   "format": "int32"
+                 }
+               ],
+               "responses": {
+                 "200": {
+                   "description": "OK",
+                   "schema": {
+                     "$ref": "#/definitions/Comment"
+                   }
+                 },
+                 "404": {
+                   "description": "Not Found"
+                 }
+               },
+               "deprecated": false
+             },
+             "delete": {
+               "tags": [
+                 "comment-controller"
+               ],
+               "summary": "delete",
+               "parameters": [
+                 {
+                   "name": "id",
+                   "in": "path",
+                   "description": "id",
+                   "required": true,
+                   "type": "integer",
+                   "format": "int32"
+                 }
+               ],
+               "responses": {
+                 "200": {
+                   "description": "OK"
+                 },
+                 "204": {
+                   "description": "No Content"
+                 }
+               },
+               "deprecated": false
+             }
+           }
+           ```
+        **POST**
+                 * /books/
+                 create a new book 
+                 ```
+                 "post": {
+                 "tags": [
+                   "book-controller"
+                ],
+                 "summary": "create",
+                 "consumes": [
+                   "application/json"
+                ],
+                 "parameters": [
+                  {
+                     "in": "body",
+                     "name": "newbook",
+                     "description": "newbook",
+                     "required": true,
+                     "schema": {
+                       "$ref": "#/definitions/Book"
+                    }
+                  }
+                ],
+                 "responses": {
+                   "201": {
+                     "description": "Created",
+                     "schema": {
+                       "$ref": "#/definitions/Book"
+                    }
+                  }
+                }
+              },
+                 ```
+                * /comment/idbook
+                Add this comment to a given book with UUID idbook
+                ```
+                "/comments/{idBook}": {
+                "post": {
+                  "tags": [
+                    "comment-controller"
+                 ],
+                  "summary": "save",
+                  "parameters": [
+                   {
+                      "in": "body",
+                      "name": "comment",
+                      "description": "comment",
+                      "required": true,
+                      "schema": {
+                        "$ref": "#/definitions/Comment"
+                     }
+                   },
+                   {
+                      "name": "idBook",
+                      "in": "path",
+                      "description": "idBook",
+                      "required": true,
+                      "type": "string",
+                      "format": "uuid"
+                   }
+                 ],
+                  "responses": {
+                    "200": {
+                      "description": "OK"
+                   },
+                    "201": {
+                      "description": "Created"
+                   },
+                    "404": {
+                      "description": "Not Found"
+                   }
+                 },
+                  "deprecated": false
+               }
+             }
+                ```
+         **PUT**       
+                 * /books/
+                 Update a book 
+                 ```
+                  "put": {
+                  "tags": [
+                    "book-controller"
+                 ],
+                  "summary": "update", 
+                  "parameters": [
+                   {
+                      "in": "body",
+                      "name": "book",
+                      "description": "book",
+                      "required": true,
+                      "schema": {
+                        "$ref": "#/definitions/Book"
+                     }
+                   }
+                 ],
+                  "responses": {
+                    "200": {
+                      "description": "OK",
+                      "schema": {
+                        "$ref": "#/definitions/Book"
+                     }
+                   }
+                 }
+               }
+          }
+                 ```
+                 * /comments/
+                 Update a comment
+                 ```
+                 "put": {
+                 "tags": [
+                   "comment-controller"
+                ],
+                 "summary": "update",
+                 "parameters": [
+                  {
+                     "in": "body",
+                     "name": "comment",
+                     "description": "comment",
+                     "required": true,
+                     "schema": {
+                       "$ref": "#/definitions/Comment"
+                    }
+                  }
+                ],
+                 "responses": {
+                   "200": {
+                     "description": "OK",
+                     "schema": {
+                       "$ref": "#/definitions/Comment"
+                    }
+                  },
+                   "201": {
+                     "description": "Created"
+                  },
+                   "404": {
+                     "description": "Not Found"
+                  }
+                },
+                 "deprecated": false
+              }
+            },
+          
+                 ```
+       **DELETE**       
+                 * /books/ID
+                 Delete a book by a given UUID id
+                 
+                 ```
+                 "delete": {
+                  "tags": [
+                    "book-controller"
+                 ],
+                  "summary": "delete",
+                  "parameters": [
+                   {
+                      "name": "id",
+                      "in": "path",
+                      "description": "id",
+                      "required": true,
+                      "type": "string",
+                      "format": "uuid"
+                   }
+                 ],
+                  "responses": {
+                    "200": {
+                      "description": "OK"
+                   },
+                    "204": {
+                      "description": "No Content"
+                   },
+                    "403": {
+                      "description": "Forbidden"
+                   }
+                 },
+                  "deprecated": false
+               }
+             },
+                 ```
+                * /comments/id
+                delete a comment by a given UUID id
+                ```
+                "delete": {
+                "tags": [
+                  "comment-controller"
+                ],
+                "summary": "delete",
+                "parameters": [
+                  {
+                    "name": "id",
+                    "in": "path",
+                    "description": "id",
+                    "required": true,
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                ],
+                "responses": {
+                  "200": {
+                    "description": "OK"
+                  },
+                  "204": {
+                    "description": "No Content"
+                  }
+                },
+                "deprecated": false
+              }
+            }
+                ```
