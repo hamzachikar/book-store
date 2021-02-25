@@ -53,7 +53,7 @@ mvn spring-boot:run
    Our endpoints for storeBookApplication are :
    
    **GET**  
-      * /books : get the list of all books
+   * /books : get the list of all books
 ```
              "/books":{
                   "get":{
@@ -161,7 +161,7 @@ mvn spring-boot:run
            }
 ```
    **POST**
-        * /books/ : create a new book 
+   * /books/ : create a new book 
 ```
                  "post": {
                  "tags": [
@@ -235,7 +235,7 @@ mvn spring-boot:run
              }
 ```
    **PUT**       
-       * /books/ : Update a book 
+   * /books/ : Update a book 
 ```
                   "put": {
                   "tags": [
@@ -301,7 +301,7 @@ mvn spring-boot:run
             },
 ```
    **DELETE**       
-        * /books/ID : Delete a book by a given UUID id
+   * /books/ID : Delete a book by a given UUID id
                  
 ```
                  "delete": {
